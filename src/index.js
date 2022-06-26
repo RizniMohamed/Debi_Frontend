@@ -7,6 +7,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { store } from './Store/store';
 import Theme from './Theme/theme'
 import Views from './Routes/Views';
+import Header from "./Components/Header"
+import { Toolbar } from '@mui/material'
+
 // import Dialogs from './Dialogs/Dialogs';
 
 const rootID = document.getElementById('root');
@@ -20,6 +23,8 @@ root.render(
       <Provider store={store}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
+          <Header />
+          <Toolbar />
           <Views />
           {/* <Dialogs /> */}
         </ThemeProvider>

@@ -77,11 +77,11 @@ const theme = {
         },
         "type": "light",
         "primary": {
-            "main": '#FF8B03',
+            "main": '#5526ff',
 
         },
         "secondary": {
-            "main": '#525151',
+            "main": '#06011a',
         },
         "error": {
             "light": "#e57373",
@@ -112,7 +112,7 @@ const theme = {
         "contrastThreshold": 3,
         "tonalOffset": 0.2,
         "text": {
-            primary: '#525151',
+            primary: '#06011a',
             secondary: '#B4B4B4',
             "disabled": "rgba(0, 0, 0, 0.38)",
             "hint": "rgba(0, 0, 0, 0.38)"
@@ -121,7 +121,7 @@ const theme = {
         "background": {
             default: '#f8f8f8',
             paper: '#ecebeb',
-            mainbg: '#525151',
+            mainbg: '#06011a',
             secondarybg: '#646464',
 
         },
