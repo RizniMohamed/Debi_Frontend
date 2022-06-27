@@ -1,23 +1,54 @@
-import MenuIcon from '@mui/icons-material/Menu';
-import { AppBar, Divider, IconButton, Toolbar, Typography } from '@mui/material';
-import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
+import { AppBar, Divider, Toolbar, Typography } from '@mui/material';
+import { Box } from '@mui/system';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { dialogActions } from '../Store/dialogSlice';
+import useAxios from '../Axios/useAxios';
+import { authActions } from '../Store/authSlice';
 
 const Header = () => {
 
   const auth = useSelector(state => state.auth)
   const [current, setCurrent] = useState("")
-
   const location = useLocation()
+  const dispatch = useDispatch();
+
+  const { axios, path, headers } = useAxios("User", "post_auth", {}, true)
 
   useEffect(() => {
     const page = location.pathname.split("/").filter(x => x)[0]
     setCurrent(page)
   }, [location])
+
+  const onLoginClick = data => {
+    axios
+      .post(path, data, headers)
+      .then(res => {
+        let user = res.data.d
+        if (user == ("No user found")) {
+          alert("Invalid credentials")
+        } else {
+          dispatch(authActions.login(user))
+          dispatch(dialogActions.hide(['login'])) 
+        }
+      })
+      .catch(e => {
+        console.log(e);
+      })
+  }
+
+  const onLogoutClick = () => {
+    dispatch(authActions.logout())
+    dispatch(dialogActions.hide(['profile'])) 
+  }
+
+  const handleProfileClick = () => {
+    auth.status ?
+    dispatch(dialogActions.show(['profile', onLogoutClick])):
+    dispatch(dialogActions.show(['login', onLoginClick])) 
+  }
 
 
   return (
@@ -25,7 +56,7 @@ const Header = () => {
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, bgcolor: "background.mainbg" }}>
         <Toolbar>
           <Box mx={2} display="flex" alignItems="center" flexGrow={1}>
-            <Typography fontSize={28} fontWeight={900} sx={{color : "primary.main"}} fontFamily="cursive" >Debi</Typography>
+            <Typography fontSize={28} fontWeight={900} sx={{ color: "primary.main" }} fontFamily="cursive" >Debi</Typography>
 
             <Box display="flex" width={300} mt={1} sx={styleMenu}>
               <Box >
@@ -45,7 +76,13 @@ const Header = () => {
           </Box>
 
           <Box display="flex" alignItems="center" >
-            <Link to="/profile"><AccountCircleIcon sx={{ ...styleMenuRight, color: current === "profile" ? "primary.main" : "white" }} /></Link>
+            <AccountCircleIcon
+              onClick={handleProfileClick}
+              sx={{
+                ...styleMenuRight,
+                color: current === "profile" ? "primary.main" : "white"
+              }}
+            />
           </Box>
 
         </Toolbar>

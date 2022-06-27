@@ -9,8 +9,7 @@ import Theme from './Theme/theme'
 import Views from './Routes/Views';
 import Header from "./Components/Header"
 import { Toolbar } from '@mui/material'
-
-// import Dialogs from './Dialogs/Dialogs';
+import Dialogs from './Components/Dialogs/Dialogs';
 
 const rootID = document.getElementById('root');
 const root = ReactDOM.createRoot(rootID);
@@ -26,7 +25,7 @@ root.render(
           <Header />
           <Toolbar />
           <Views />
-          {/* <Dialogs /> */}
+          <Dialogs />
         </ThemeProvider>
       </Provider>
     </BrowserRouter>

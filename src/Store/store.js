@@ -9,11 +9,7 @@ export const store = configureStore({
                 ignoredActions: ['Dialog Slice/show'],
                 ignoredPaths: [
                     'dialog.login.onSubmit',
-                    'dialog.delete.onSubmit',
-                    'dialog.payment.onSubmit',
-                    'dialog.notificationDetails.onSubmit',
-                    'dialog.paymentDetails.onSubmit',
-                    'dialog.signup.onSubmit',
+                    'dialog.profile.onSubmit',
                 ],
             },
         }),

@@ -6,27 +6,7 @@ const initialState = {
         data: "",
         onSubmit: undefined
     },
-    delete: {
-        status: false,
-        data: "",
-        onSubmit: undefined
-    },
-    payment: {
-        status: false,
-        data: "",
-        onSubmit: undefined
-    },
-    notificationDetails: {
-        status: false,
-        data: "",
-        onSubmit: undefined
-    },
-    paymentDetails: {
-        status: false,
-        data: "",
-        onSubmit: undefined
-    },
-    signup: {
+    profile: {
         status: false,
         data: "",
         onSubmit: undefined
