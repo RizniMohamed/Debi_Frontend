@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { AppBar, Divider, Toolbar, Typography } from '@mui/material';
+import { AppBar, Divider, IconButton, Toolbar, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
@@ -7,6 +7,8 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { dialogActions } from '../Store/dialogSlice';
 import useAxios from '../Axios/useAxios';
 import { authActions } from '../Store/authSlice';
+import MenuIcon from '@mui/icons-material/Menu';
+import { drawerActions } from '../Store/drawerSlice';
 
 const Header = () => {
 
@@ -14,6 +16,9 @@ const Header = () => {
   const [current, setCurrent] = useState("")
   const location = useLocation()
   const dispatch = useDispatch();
+  const drawerState = useSelector(state => state.leftDrawer.status)
+
+  const handleDrawerState = () => drawerState ? dispatch(drawerActions.hide()) : dispatch(drawerActions.show())
 
   const { axios, path, headers } = useAxios("User", "post_auth", {}, true)
 
@@ -31,7 +36,7 @@ const Header = () => {
           alert("Invalid credentials")
         } else {
           dispatch(authActions.login(user))
-          dispatch(dialogActions.hide(['login'])) 
+          dispatch(dialogActions.hide(['login']))
         }
       })
       .catch(e => {
@@ -41,13 +46,13 @@ const Header = () => {
 
   const onLogoutClick = () => {
     dispatch(authActions.logout())
-    dispatch(dialogActions.hide(['profile'])) 
+    dispatch(dialogActions.hide(['profile']))
   }
 
   const handleProfileClick = () => {
     auth.status ?
-    dispatch(dialogActions.show(['profile', onLogoutClick])):
-    dispatch(dialogActions.show(['login', onLoginClick])) 
+      dispatch(dialogActions.show(['profile', onLogoutClick])) :
+      dispatch(dialogActions.show(['login', onLoginClick]))
   }
 
 
@@ -55,6 +60,17 @@ const Header = () => {
     <>
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, bgcolor: "background.mainbg" }}>
         <Toolbar>
+          {(current === "admin" || current === "manager") &&
+            <IconButton
+              onClick={handleDrawerState}
+              edge="start"
+              sx={{
+                color: "white",
+              }}
+            >
+              <MenuIcon />
+            </IconButton>}
+
           <Box mx={2} display="flex" alignItems="center" flexGrow={1}>
             <Typography fontSize={28} fontWeight={900} sx={{ color: "primary.main" }} fontFamily="cursive" >Debi</Typography>
 

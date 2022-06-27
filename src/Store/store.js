@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authSlice from "./authSlice";
 import dialogSlice from "./dialogSlice";
+import drawerSlice from "./drawerSlice";
 
 export const store = configureStore({
     middleware: (getDefaultMiddleware) =>
@@ -17,6 +18,7 @@ export const store = configureStore({
     reducer: {
         auth: authSlice.reducer,
         dialog: dialogSlice.reducer,
+        leftDrawer: drawerSlice.reducer,
     }
 })
 
