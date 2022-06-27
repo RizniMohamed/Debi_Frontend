@@ -7,7 +7,7 @@ const Search = ({ list, setData, searchBy }) => {
 
     const handleOnInputChange = ({ target }) => {
         let searchKey = target.innerText ? target.innerText : target.value;
-        searchKey ? setData(list.filter(i => i[searchBy] === searchKey)) : setData(list)
+        searchKey ? setData(list.filter(i => String(i[searchBy]) === String(searchKey))) : setData(list)
     }
 
     return (
@@ -16,7 +16,7 @@ const Search = ({ list, setData, searchBy }) => {
             size='small'
             options={list}
             onInputChange={handleOnInputChange}
-            getOptionLabel={option => option[searchBy]}
+            getOptionLabel={option => String(option[searchBy])}
             PaperComponent={params =>
                 <Paper
                     {...params}

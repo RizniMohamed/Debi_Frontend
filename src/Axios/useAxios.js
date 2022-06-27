@@ -4,14 +4,14 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://localhost:44316/APIs/';
 
-const useAxios = (api,body = {}) => {
+const useAxios = (endpoint,method,body = {}) => {
     const [response, setResponse] = useState(null);
     const [error, setError] = useState('');
     const [loading, setloading] = useState(true);
 
     const fetchData = () => {
         axios
-            .post(api,body,{
+            .post(`${endpoint}.asmx/${method}`,body,{
                 headers: {
                     'Access-Control-Allow-Origin': true
                 }

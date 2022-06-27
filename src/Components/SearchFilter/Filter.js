@@ -15,6 +15,8 @@ const Filter = ({ list, setData, options }) => {
         if (newKeys !== "none") {
             const filterConstraints = Object.fromEntries(Object.entries(newKeys).filter(([_, v]) => v !== ""))
             let filteredData = list
+            console.log(newKeys);
+            console.log(filteredData);
             Object.keys(filterConstraints).forEach(e => {
 
                 filteredData = filteredData.filter(i =>
