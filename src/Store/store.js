@@ -11,6 +11,7 @@ export const store = configureStore({
                 ignoredPaths: [
                     'dialog.login.onSubmit',
                     'dialog.profile.onSubmit',
+                    'dialog.registerHotel.onSubmit',
                 ],
             },
         }),

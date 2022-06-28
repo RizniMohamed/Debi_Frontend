@@ -73,7 +73,7 @@ const Footer = () => {
       </Box>
 
       <Box pb={1}  display="flex" justifyContent="center">
-        <Typography fontSize={14} fontWeight={500} color="white">COPYRIGHT &copy; 2022 DEBI HOTEL ALL RIGHT RESERVED </Typography>
+        <Typography fontSize={14} fontWeight={500} color="white">COPYRIGHT &copy; 2022 DEBI HOTEL RESERVATION COMPANY ALL RIGHT RESERVED </Typography>
       </Box>
 
     </Paper>

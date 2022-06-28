@@ -1,6 +1,7 @@
 import React from 'react'
-import Login from '../Dialogs/Login'
+import Login from './Login'
 import Profile from './Profile'
+import RegisterHotel from './RegisterHotel'
 // import Delete from '../Dialogs/Delete'
 // import NotificationDetails from '../Dialogs/NotificationDetails'
 // import Payment from '../Dialogs/Payment/Payment'
@@ -13,6 +14,7 @@ const Dialogs = () => {
     <>
       <Login />
       <Profile/>
+      <RegisterHotel/>
       {/* <Delete />
       <Payment />
       <NotificationDetails />

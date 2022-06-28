@@ -22,7 +22,8 @@ function Welcome() {
         />
         <Box position="absolute" top="50%" left="50%" >
 
-          <Typography variant="h3" fontWeight={900} color="white" sx={{ transform: 'translate(-50%,-50%)' }} >DEBI HOTEL</Typography>
+          <Typography variant="h3" fontWeight={900} color="white" sx={{ transform: 'translate(-50%,-50%)', textAlign: "center", m: 0 }} >DEBI</Typography>
+          <Typography variant="h5" fontWeight={700} color="white" sx={{ transform: 'translate(-50%,-100%)', textAlign: "center", mb: 2 }} >Hotel Reservation Company</Typography>
           <Link to="/hotel">
             <Button variant='contained' sx={{ transform: 'translate(-50%,-50%)' }} >
               <Typography fontSize={20} fontWeight={700} color="white"  >Hotels</Typography>

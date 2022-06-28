@@ -11,6 +11,11 @@ const initialState = {
         data: "",
         onSubmit: undefined
     },
+    registerHotel: {
+        status: false,
+        data: "",
+        onSubmit: undefined
+    },
 }
 const DialogSlice = createSlice({
     name: "Dialog Slice",

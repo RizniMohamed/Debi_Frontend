@@ -4,13 +4,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import useAxios from '../../Axios/useAxios';
 import { dialogActions } from '../../Store/dialogSlice';
 import BRTable from '../../Components/helper/BRTable';
+import { set } from 'date-fns/esm';
 
 const Profile = () => {
     const { status, onSubmit } = useSelector(state => state.dialog.profile)
     const userID = useSelector(state => state.auth.userID)
     const dispatch = useDispatch()
-    const { axios, path, headers } = useAxios("User", "get_user",{},true)
+    const { axios, path, headers } = useAxios("User", "get_user", {}, true)
     const [user, setUser] = useState({})
+    const [image, setImage] = useState("")
 
     useEffect(() => {
         if (userID != null) {
@@ -34,14 +36,6 @@ const Profile = () => {
             details: user.Contact
         },
         {
-            name: 'Contact',
-            details: user.Contact
-        },
-        {
-            name: 'NIC',
-            details: user.Nic
-        },
-        {
             name: 'NIC',
             details: user.Nic
         },
@@ -53,10 +47,16 @@ const Profile = () => {
             name: 'Address',
             details: user.Address
         },
-
-
-
     ]
+
+    useEffect(() => {
+        let _image = new Image();
+        _image.src = 'data:image/png;base64,' + user.Image;
+        _image.onload = () => {
+            setImage(_image.src)
+        }
+    }, [user])
+
 
     return (
 
@@ -68,10 +68,12 @@ const Profile = () => {
                 <Box display="flex" alignItems="center" flexDirection="column">
                     <Avatar
                         alt="Profile Picture"
-                        src={user.Image}
+                        src={image}
                         sx={{
                             width: 150,
-                            height: 150
+                            height: 150,
+                            objectFit: "cover",
+
                         }} />
                     <Typography fontSize={18} fontWeight={700} sx={{ my: 2 }}>{user.Name}</Typography>
                 </Box>
