@@ -15,12 +15,12 @@ const Hotel = () => {
     const { response: res_hotels, error: err_hotels } = useAxios("Hotel", "get_hotels")
     const { response: res_cities, error: err_cities } = useAxios("Hotel", "get_cities")
     const { response: res_countries, error: err_countries } = useAxios("Hotel", "get_countries")
-    const { axiosU, pathU, headersU } = useAxios("User", "post_user", {}, true)
-    const { axiosH, pathH, headersH } = useAxios("Hotel", "post_hotel", {}, true)
+    const { axios: axiosU, path: pathU, headers: headersU } = useAxios("User", "post_user", {}, true)
+    const { axios: axiosH, path: pathH, headers: headersH } = useAxios("Hotel", "post_hotel", {}, true)
     const dispatch = useDispatch()
-
-    const uploadUser = async (data) => {
-        let response = ""
+  
+    const onRegisterClick = data => {
+        console.log(data);
         axiosU
             .post(pathU, {
                 email: data.email,
@@ -33,8 +33,8 @@ const Hotel = () => {
                 roleID: 2,
             }, headersU)
             .then(res => {
-                response = res.data.d
-
+                let response = res.data.d
+                console.log(response);
                 axiosH
                     .post(pathH, {
                         name: data.hotel_name,
@@ -59,17 +59,6 @@ const Hotel = () => {
             .catch(e => {
                 console.log(e);
             })
-        return response;
-    }
-
-    const uploadHotel = async (data, userID) => {
-        let response = ""
-
-        return response;
-    }
-    const onRegisterClick = data => {
-        console.log(data);
-        let userData = uploadUser(data)
     }
 
     const Filter_options = [
@@ -104,12 +93,28 @@ const Hotel = () => {
         },
     ]
 
+    const base64ToImage = async (data) => {
+        let _image = new Image();
+        _image.src = 'data:image/png;base64,' + data;
+        return _image
+    }
+
     useEffect(() => {
         try {
-            if (res_hotels != null &
-                res_countries != null && res_cities != null) {
-                setHotels(res_hotels)
-                setFilter(res_hotels)
+            if (res_hotels != null && res_countries != null && res_cities != null) {
+                let newHotels = res_hotels.map(h => {
+                    base64ToImage(h.Image)
+                    .then( res => {
+                        res.onload = () => {
+                            h.Image = res.src
+                        }
+                    }).catch(e => {
+                        console.log(e); 
+                    })
+                    return h
+                })
+                setHotels(newHotels)
+                setFilter(newHotels)
                 setCountries(
                     res_countries.map(data => {
                         data = {

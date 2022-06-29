@@ -79,15 +79,11 @@ const RegisterHotel = () => {
             <Typography fontSize={24} fontWeight={900} textAlign="center">Register Hotel</Typography>
             <HotelForm {...formik} />
           </TabPanel>
-          <TabPanel value={step} index={2}>
-            <Typography fontSize={24} fontWeight={900} textAlign="center">Register Room</Typography>
-            <RoomForm {...formik} />
-          </TabPanel>
         </DialogContent>
 
         <MobileStepper
           variant="progress"
-          steps={3}
+          steps={2}
           position="static"
           activeStep={step}
           sx={{
@@ -99,11 +95,10 @@ const RegisterHotel = () => {
                 Submit
               </Button>
             ) : (
-              <Button size="small" onClick={handleNext} disabled={step === 2}>
+              <Button size="small" onClick={handleNext} disabled={step === 1}>
                 Next <KeyboardArrowRight />
               </Button>
             )
-
           }
           backButton={
             <Button size="small" onClick={handleBack} disabled={step === 0}>

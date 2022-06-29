@@ -31,7 +31,7 @@ export const MuiDrawer = {
             '& .MuiSvgIcon-root': {
                 transition: "background 0.3s, color 0.3s",
                 boxSizing: "unset",
-                backgroundColor: "background.secondarybg",
+                backgroundColor: "lightgray",
                 p: 1,
                 borderRadius: 0.3,
                 color: "primary.main"

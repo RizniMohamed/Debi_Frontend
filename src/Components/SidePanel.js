@@ -46,20 +46,19 @@ const SidePanel = () => {
       currentPage = pathArrays[pathArrays.length - 1].toLowerCase()
     }
 
+
     if (currentPage)
       setCurrent(currentPage)
     else
-      setCurrent(userRole === "profile" ? "profile" : "dashboard")
+      setCurrent( "hotel" )
 
     switch (userRole) {
       case "admin": setData(AdminData); break;
       case "manager": setData(ManagerData); break;
       default: break;
     }
-
-
   }, [location])
-
+  
 
   const hoverStyle = () => {
     let element = null
@@ -80,7 +79,6 @@ const SidePanel = () => {
   }
 
   const selectedStyle = (name) => {
-    if (name === "my boarding") name = "boarding"
     if (current === name) {
       if (drawerState)
         return {

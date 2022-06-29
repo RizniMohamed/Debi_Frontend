@@ -1,37 +1,25 @@
 import {
-  Dashboard,
   Home,
-  MeetingRoom,
   Person,
-  Notifications,
+  KingBed
 } from '@mui/icons-material';
 
 
 const data = [
   {
-    name: "Dashboard",
+    name: "Hotel",
     path: "/manager/",
-    icon: <Dashboard />
-  },
-  {
-    name: "My Boarding",
-    path: "/manager/boarding",
     icon: <Home />
   },
   {
-    name: "Rooms",
-    path: "/manager/rooms",
-    icon: <MeetingRoom />
+    name: "Room",
+    path: "/manager/Room",
+    icon: <KingBed />
   },
   {
-    name: "Persons",
-    path: "/manager/persons",
+    name: "User",
+    path: "/manager/User",
     icon: <Person />
-  },
-  {
-    name: "Notification",
-    path: "/manager/notification",
-    icon: <Notifications />
   },
 ]
 

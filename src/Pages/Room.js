@@ -7,14 +7,17 @@ import DateRPicker from '../Components/helper/DateRPicker'
 import Typography from '@mui/material/Typography'
 import { Button } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close';
+import { useParams, useRoutes } from 'react-router-dom'
 
 const Room = () => {
+
     const [rooms, setRooms] = useState([])
     const [filter, setFilter] = useState([])
     const [roomtype, setRoomtype] = useState([])
     const [dateFrom, setDateFrom] = useState(null)
     const [dateTo, setDateTo] = useState(null)
-    const { response: res_rooms, error: err_rooms } = useAxios("Room", "get_rooms")
+    const { id } = useParams();
+    const { response: res_rooms, error: err_rooms } = useAxios("Room", "get_rooms", { id})
     const { response: res_roomtype, error: err_roomtype } = useAxios("Room", "get_roomtypes")
 
     const Filter_options = [
@@ -75,6 +78,7 @@ const Room = () => {
     useEffect(() => {
         try {
             if (res_rooms != null && res_roomtype != null) {
+                console.log(res_rooms);
                 manipulateRoomData(res_rooms)
                 setRoomtype(
                     res_roomtype.map(({ Id, Name }) => {
@@ -90,11 +94,11 @@ const Room = () => {
             console.log(error);
         }
 
-    }, [res_rooms, res_roomtype])
+    }, [id, res_rooms, res_roomtype])
 
     useEffect(() => {
         if (dateFrom != null && dateTo != null) {
-            let newRooms = rooms.filter(room => 
+            let newRooms = rooms.filter(room =>
                 (dateFrom.toLocaleDateString() != room.Booked_date.toLocaleDateString()) &&
                 (dateTo.toLocaleDateString() != room.Booked_date.toLocaleDateString())
             )

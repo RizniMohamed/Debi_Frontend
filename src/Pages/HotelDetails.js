@@ -13,11 +13,20 @@ const HotelDetails = () => {
 
     const { axios, path, headers } = useAxios("User", "get_user", {}, true)
 
+    const [image, setImage] = useState("")
+
+    useEffect(() => {
+        let _image = new Image();
+        _image.src = 'data:image/png;base64,' + hotel.Image;
+        _image.onload = () => {
+            setImage(_image.src)
+        }
+    }, [hotel])
+
     useEffect(() => {
         try {
             if (res_hotel != null) {
                 setHotel(res_hotel)
-                console.log(res_hotel);
                 axios
                     .post(path, { id: res_hotel.UserID }, headers)
                     .then(res => {
@@ -62,7 +71,7 @@ const HotelDetails = () => {
         images: [
             {
                 name: "Hotel Image",
-                path: hotel.Image
+                path: image
             },
 
         ]

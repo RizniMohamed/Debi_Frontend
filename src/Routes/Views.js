@@ -4,8 +4,11 @@ import Hotel from "../Pages/Hotel"
 import Welcome from "../Pages/Welcome"
 import Room from "../Pages/Room"
 import RoomDetails from "../Pages/RoomDetails"
+
 import ManagerIndex from "../Pages/Manager/Index"
-import MyHotel from "../Pages/Manager/MyHotel"
+import ManagerHotel from "../Pages/Manager/Hotel"
+import ManagerRoom from "../Pages/Manager/Room"
+import ManagerUser from "../Pages/Manager/User"
 
 import AdminIndex from "../Pages/Admin/Index"
 import AdminHotel from "../Pages/Admin/Hotel"
@@ -29,9 +32,12 @@ function Views() {
       </Route>
 
       <Route path="Manager" element={<ManagerIndex />}>
-        <Route index element={<MyHotel />} />
+        <Route index element={<ManagerHotel />} />
+        <Route path="Room" element={<ManagerRoom />} />
+        <Route path="User" element={<ManagerUser />} />
       </Route>
 
+      
     </Routes>
   )
 }

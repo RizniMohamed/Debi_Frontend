@@ -7,17 +7,17 @@ import {
 
 const data = [
   {
-    name: "Hotels",
+    name: "Hotel",
     path: "/admin/",
     icon: <Home />
   },
   {
-    name: "Rooms",
+    name: "Room",
     path: "/admin/Room",
     icon: <KingBed />
   },
   {
-    name: "Persons",
+    name: "User",
     path: "/admin/User",
     icon: <Person />
   },
