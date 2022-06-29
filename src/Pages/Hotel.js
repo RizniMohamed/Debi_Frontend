@@ -7,12 +7,13 @@ import Typography from '@mui/material/Typography'
 import { useDispatch } from 'react-redux'
 import { dialogActions } from '../Store/dialogSlice'
 
+
 const Hotel = () => {
     const [hotels, setHotels] = useState([])
     const [filter, setFilter] = useState([])
     const [countries, setCountries] = useState([])
     const [cities, setCities] = useState([])
-    const { response: res_hotels, error: err_hotels } = useAxios("Hotel", "get_hotels")
+    const { response: res_hotels, error: err_hotels, loading } = useAxios("Hotel", "get_hotels")
     const { response: res_cities, error: err_cities } = useAxios("Hotel", "get_cities")
     const { response: res_countries, error: err_countries } = useAxios("Hotel", "get_countries")
     const { axios: axiosU, path: pathU, headers: headersU } = useAxios("User", "post_user", {}, true)
@@ -139,6 +140,15 @@ const Hotel = () => {
         }
 
     }, [res_hotels, res_cities, res_countries])
+
+    if (loading || filter.length === 0 ){
+        return (
+            <Box display='flex' flexDirection='column' justifyContent='center' alignItems='center' widht='100vw' height='90vh'>
+                <Typography fontSize={40} fontWeight={900}>Loading... </Typography>
+                <Typography fontSize={20} fontWeight={700}>Please wait, data is retreiving from the server </Typography>
+            </Box>
+        )
+    }
 
     return (
         <>
