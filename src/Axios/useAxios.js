@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://riznimohamed-001-site1.ctempurl.com/APIs/';
+axios.defaults.baseURL = 'http://debihrs.somee.com/APIs/';
 
 const useAxios = (endpoint, method, body = {}, manual = false) => {
     const [response, setResponse] = useState(null);
