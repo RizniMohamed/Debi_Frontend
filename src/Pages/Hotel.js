@@ -19,7 +19,7 @@ const Hotel = () => {
     const { axios: axiosU, path: pathU, headers: headersU } = useAxios("User", "post_user", {}, true)
     const { axios: axiosH, path: pathH, headers: headersH } = useAxios("Hotel", "post_hotel", {}, true)
     const dispatch = useDispatch()
-  
+
     const onRegisterClick = data => {
         console.log(data);
         axiosU
@@ -102,16 +102,17 @@ const Hotel = () => {
 
     useEffect(() => {
         try {
-            if (res_hotels != null && res_countries != null && res_cities != null) {
+            if (res_hotels && res_countries && res_cities != null) {
+                console.log(res_hotels);
                 let newHotels = res_hotels.map(h => {
                     base64ToImage(h.Image)
-                    .then( res => {
-                        res.onload = () => {
-                            h.Image = res.src
-                        }
-                    }).catch(e => {
-                        console.log(e); 
-                    })
+                        .then(res => {
+                            res.onload = () => {
+                                h.Image = res.src
+                            }
+                        }).catch(e => {
+                            console.log(e);
+                        })
                     return h
                 })
                 setHotels(newHotels)
@@ -141,7 +142,7 @@ const Hotel = () => {
 
     }, [res_hotels, res_cities, res_countries])
 
-    if (loading || filter.length === 0 ){
+    if (loading || filter.length === 0) {
         return (
             <Box display='flex' flexDirection='column' justifyContent='center' alignItems='center' widht='100vw' height='90vh'>
                 <Typography fontSize={40} fontWeight={900}>Loading... </Typography>
