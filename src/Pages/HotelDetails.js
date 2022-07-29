@@ -10,7 +10,6 @@ const HotelDetails = () => {
     const [user, setUser] = useState({})
     const { id } = useParams();
     const { response: res_hotel, error: err_hotel } = useAxios("Hotel", "get_hotel", { id })
-
     const { axios, path, headers } = useAxios("User", "get_user", {}, true)
 
     const [image, setImage] = useState("")
